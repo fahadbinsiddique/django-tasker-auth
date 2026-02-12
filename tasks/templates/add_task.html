@@ -1,0 +1,72 @@
+{% extends 'master/base.html' %}
+
+{% block title %}Add New Task | Tasker{% endblock %}
+
+{% block content %}
+<div class="max-w-3xl mx-auto mt-10 px-4">
+    <div class="mb-8">
+        <h1 class="text-3xl font-extrabold text-white tracking-tight">Create New Task</h1>
+        <p class="text-slate-400 mt-2">Fill in the details below to add a new activity to your list.</p>
+    </div>
+
+    <div class="bg-slate-800/40 border border-slate-700/50 rounded-3xl p-8 shadow-2xl backdrop-blur-md">
+        <form action="" method="POST"  class="space-y-6">
+            {% csrf_token %}
+            <div>
+                <label class="block text-sm font-semibold text-slate-300 mb-2 ml-1">Task Title</label>
+                <div class="relative group">
+                    <span class="absolute inset-y-0 left-0 pl-4 flex items-center text-slate-500 group-focus-within:text-blue-400 transition-colors">
+                        <i class="fas fa-edit"></i>
+                    </span>
+                    <input type="text" name="title" required
+                        class="block w-full pl-11 pr-4 py-3.5 bg-slate-900/50 border border-slate-700 rounded-2xl text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all"
+                        placeholder="e.g. Design Landing Page">
+                </div>
+            </div>
+
+            <div>
+                <label class="block text-sm font-semibold text-slate-300 mb-2 ml-1">Current Status</label>
+                <div class="relative group">
+                    <span class="absolute inset-y-0 left-0 pl-4 flex items-center text-slate-500 group-focus-within:text-blue-400 transition-colors">
+                        <i class="fas fa-tasks"></i>
+                    </span>
+                    <select name="status" required
+                        class="block w-full pl-11 pr-10 py-3.5 bg-slate-900/50 border border-slate-700 rounded-2xl text-white appearance-none focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all cursor-pointer">
+                        <option value="Pending" class="bg-slate-800">Pending</option>
+                        <option value="InProgress" class="bg-slate-800">In Progress</option>
+                        <option value="Completed" class="bg-slate-800">Completed</option>
+                    </select>
+                    <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-slate-400">
+                        <i class="fas fa-chevron-down text-xs"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <label class="block text-sm font-semibold text-slate-300 mb-2 ml-1">Task Description</label>
+                <div class="relative group">
+                    <textarea name="description" rows="5" required
+                        class="block w-full px-5 py-4 bg-slate-900/50 border border-slate-700 rounded-2xl text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all resize-none"
+                        placeholder="Write more details about this task..."></textarea>
+                </div>
+            </div>
+
+            <div class="flex flex-col sm:flex-row gap-4 pt-4">
+                <button type="submit"
+                    class="flex-1 py-4 px-6 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-2xl shadow-lg shadow-blue-600/20 transform transition-all active:scale-[0.98] flex items-center justify-center">
+                    <i class="fas fa-plus-circle mr-2"></i> Save Task
+                </button>
+                <a href="{% url 'task_list_page' %}"
+                    class="flex-1 py-4 px-6 bg-slate-700/50 hover:bg-slate-700 text-slate-200 font-bold rounded-2xl text-center transition-all">
+                    Cancel
+                </a>
+            </div>
+        </form>
+    </div>
+
+    <div class="mt-8 flex items-center justify-center text-slate-500 text-xs">
+        <i class="fas fa-shield-alt mr-2"></i>
+        <span>Data is securely stored in your personal task management account.</span>
+    </div>
+</div>
+{% endblock content %}
