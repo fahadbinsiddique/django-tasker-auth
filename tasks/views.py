@@ -62,6 +62,10 @@ def add_task_page(request):
         title = request.POST.get("title")
         status = request.POST.get("status")
         description = request.POST.get("description")
-        ToDoModel.objects.create(title=title, status=status, description=description)
+        deadline = request.POST.get("deadline")
+        
+        ToDoModel.objects.create(
+            title=title, status=status, description=description, deadline=deadline
+        )
         return redirect("task_list_page")
     return render(request, "add_task.html")

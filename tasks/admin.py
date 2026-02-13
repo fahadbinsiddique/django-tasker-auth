@@ -11,7 +11,7 @@ admin.site.register(UserAuthInfoModel, AuthAdmin)
 
 
 class ToDoAdmin(admin.ModelAdmin):
-    list_display = ["title", "status"]
+    list_display = ["title", "status",'deadline']
 
 
 admin.site.register(ToDoModel, ToDoAdmin)

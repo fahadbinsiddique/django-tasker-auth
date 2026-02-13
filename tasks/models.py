@@ -18,4 +18,5 @@ class ToDoModel(models.Model):
         ("InProgress", "InProgress"),
         ("Completed", "Completed"),
     ]
-    status = models.CharField(choices=status_type,max_length=20)
+    status = models.CharField(choices=status_type, max_length=20)
+    deadline = models.DateField( null=True, blank=True)
