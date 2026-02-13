@@ -1,35 +1,49 @@
 <nav class="nav-glass sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-16">
-                <div class="flex-shrink-0 flex items-center">
-                    <a href="{% url 'home_page' %}" class="flex items-center space-x-2">
-                        <div class="bg-blue-600 p-1.5 rounded-lg">
-                            <i class="fas fa-check-double text-white"></i>
-                        </div>
-                        <span class="text-xl font-bold tracking-tight text-white">Tasker</span>
-                    </a>
-                </div>
-
-                <div class="hidden md:block">
-                    <div class="ml-10 flex items-baseline space-x-6">
-                        <a href="{% url 'home_page' %}" class="nav-link px-3 py-2 text-sm font-medium">Home</a>
-                        <a href="{% url 'task_list_page' %}" class="nav-link px-3 py-2 text-sm font-medium">Task List</a>
-                        <a href="{% url 'add_task_page' %}" class="nav-link px-3 py-2 text-sm font-medium">Add Task</a>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-16">
+            <div class="flex-shrink-0 flex items-center">
+                <a href="{% url 'home_page' %}" class="flex items-center space-x-2">
+                    <div class="bg-blue-600 p-1.5 rounded-lg">
+                        <i class="fas fa-check-double text-white"></i>
                     </div>
-                </div>
+                    <span class="text-xl font-bold tracking-tight text-white">Tasker</span>
+                </a>
+            </div>
 
-                <div class="hidden md:flex items-center space-x-4">
+            <div class="hidden md:block">
+                <div class="ml-10 flex items-baseline space-x-6 text-slate-300">
+                    <a href="{% url 'home_page' %}" class="nav-link px-3 py-2 text-sm font-medium">Home</a>
+                    <a href="{% url 'task_list_page' %}" class="nav-link px-3 py-2 text-sm font-medium">Task List</a>
+                    <a href="{% url 'add_task_page' %}" class="nav-link px-3 py-2 text-sm font-medium">Add Task</a>
+                </div>
+            </div>
+
+            <div class="hidden md:flex items-center space-x-4">
+                {% if user.is_authenticated %}
+                    <span class="text-xs font-semibold text-slate-500 uppercase tracking-widest mr-2">
+                        Hi, {{ user.username }}
+                    </span>
+                    
+                    <form action="{% url 'logout_page' %}" method="POST" class="inline">
+                        {% csrf_token %}
+                        <button type="submit" class="bg-rose-500/10 hover:bg-rose-500 text-rose-500 hover:text-white px-4 py-2 rounded-lg text-sm font-bold border border-rose-500/20 transition-all active:scale-95 flex items-center">
+                            <i class="fas fa-sign-out-alt mr-2 text-xs"></i>
+                            Logout
+                        </button>
+                    </form>
+                {% else %}
                     <a href="{% url 'login_page' %}" class="text-sm font-medium text-slate-300 hover:text-white transition-colors">Login</a>
                     <a href="{% url 'regi_page' %}" class="bg-blue-600 hover:bg-blue-500 text-white px-4 py-2 rounded-lg text-sm font-bold shadow-lg shadow-blue-600/20 transition-all active:scale-95">
                         Register
                     </a>
-                </div>
+                {% endif %}
+            </div>
 
-                <div class="md:hidden flex items-center">
-                    <button type="button" class="text-slate-400 hover:text-white focus:outline-none">
-                        <i class="fas fa-bars text-xl"></i>
-                    </button>
-                </div>
+            <div class="md:hidden flex items-center">
+                <button type="button" class="text-slate-400 hover:text-white focus:outline-none">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
             </div>
         </div>
-    </nav>
+    </div>
+</nav>

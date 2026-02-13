@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from tasks.models import *
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
@@ -36,11 +37,11 @@ def login_page(request):
     return render(request, "login.html")
 
 
+@login_required
 def home_page(request):
     data = ToDoModel.objects.filter(status="Completed")
-    print('erer',data)
+
     data_pack = {"item": data}
-    print('fff',data_pack)
     return render(request, "home.html", data_pack)
 
 
@@ -63,9 +64,14 @@ def add_task_page(request):
         status = request.POST.get("status")
         description = request.POST.get("description")
         deadline = request.POST.get("deadline")
-        
+
         ToDoModel.objects.create(
             title=title, status=status, description=description, deadline=deadline
         )
         return redirect("task_list_page")
     return render(request, "add_task.html")
+
+
+def logout_page(request):
+    logout(request)
+    return redirect("login_page")
