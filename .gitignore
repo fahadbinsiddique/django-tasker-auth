@@ -1,0 +1,13 @@
+# Python bytecode (the cache files)
+__pycache__/
+*.py[cod]
+
+# Virtual environment
+venv/
+env/
+
+# Database (Online deploy-এর সময় লোকাল ডাটাবেস দরকার নেই)
+db.sqlite3
+
+# Deployment artifacts
+staticfiles/
