@@ -37,7 +37,7 @@ def login_page(request):
     return render(request, "login.html")
 
 
-@login_required
+# @login_required
 def home_page(request):
     data = ToDoModel.objects.filter(status="Completed")
 
@@ -74,4 +74,26 @@ def add_task_page(request):
 
 def logout_page(request):
     logout(request)
-    return redirect("login_page")
+    return redirect("home_page")
+
+
+def edit_task(request, edit_id):
+    edited_task=ToDoModel.objects.get(id=edit_id)
+    dataPack ={
+        'task':edited_task
+    }
+    if request.method == "POST":
+        title = request.POST.get("title")
+        status = request.POST.get("status")
+        description = request.POST.get("description")
+        deadline = request.POST.get("deadline")
+        ToDoModel(
+            id=edit_id, title=title, status=status, description=description, deadline=deadline
+        ).save()
+        return redirect("task_list_page")
+    return render(request, "edit_task.html", dataPack)
+
+
+def delete_task(req, delete_id):
+    ToDoModel.objects.get(id=delete_id).delete()
+    return redirect("task_list_page")
