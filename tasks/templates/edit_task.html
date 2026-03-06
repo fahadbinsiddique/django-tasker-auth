@@ -24,12 +24,12 @@
 
             <div>
                 <label for="description" class="block text-sm font-semibold text-slate-300 mb-2">Description</label>
-                <textarea name="description" id="description" rows="5" required
+                <textarea name="description" id="description" rows="5" required 
                           class="w-full px-5 py-3.5 bg-slate-900/50 border border-slate-700 rounded-xl text-white focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all placeholder:text-slate-600">{{ task.description }}</textarea>
             </div>
 
                 <div>
-        <label class="block text-sm font-semibold text-slate-300 mb-2 ml-1"
+        <label class="block text-sm font-semibold text-slate-300 mb-2 ml-1" 
           >Deadline </label
         >
         <div class="relative group">
@@ -41,6 +41,7 @@
           <input
             type="date"
             name="deadline"
+            value="{{ task.deadline|date:'Y-m-d' }}"
             required
             class="block w-full pl-11 pr-4 py-3.5 bg-slate-900/50 border border-slate-700 rounded-2xl text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-rose-500/50 focus:border-rose-500 transition-all cursor-pointer shadow-sm"
           />

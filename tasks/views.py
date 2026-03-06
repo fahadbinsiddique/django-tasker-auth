@@ -79,6 +79,7 @@ def logout_page(request):
 
 def edit_task(request, edit_id):
     edited_task=ToDoModel.objects.get(id=edit_id)
+    
     dataPack ={
         'task':edited_task
     }
