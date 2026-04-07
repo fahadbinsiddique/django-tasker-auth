@@ -55,7 +55,7 @@
             </div>
             <h3 class="text-2xl font-bold text-slate-400">No completed tasks yet!</h3>
             <p class="text-slate-500 mt-2">Finish your pending tasks to see them here.</p>
-            <a href="/tasks/" class="inline-block mt-6 text-blue-400 hover:underline">Go to Task List &rarr;</a>
+            <a href=" {% url 'task_list_page' %}" class="inline-block mt-6 text-blue-400 hover:underline">Go to Task List &rarr;</a>
         </div>
         {% endfor %}
     </div>
